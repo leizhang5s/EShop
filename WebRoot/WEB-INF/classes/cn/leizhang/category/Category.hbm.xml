@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">    
+<hibernate-mapping>
+	<class name="cn.leizhang.category.Category" table="category">
+		<id name="cid" column="cid">
+			<generator class="native"/>
+		</id>
+		<!-- 配置普通属性 -->
+		<property name="cname" column="cname" />
+
+		<!-- 配置关联关系 -->
+		<set name="categorySeconds" order-by="csid" cascade="delete" lazy="false">
+			<key column="cid" />
+			<one-to-many class="cn.leizhang.categorysecond.CategorySecond" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="false" />
+
+	<package name="default" namespace="/" extends="struts-default">
+	
+	
+			<global-results>
+				<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+				<result name="login">/admin/index.jsp</result>
+			</global-results>
+	
+		<!-- 配置首页访问的Action -->
+		<action name="index" class="IndexAction">
+			<result name="IndexSuccess">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="product_*" class="ProductAction" method="{1}">
+			<result name="findByCidSuccess">/WEB-INF/jsp/list.jsp</result>
+			<result name="findByPidSuccess">/WEB-INF/jsp/desc.jsp</result>
+			<result name="findByCsidSuccess">/WEB-INF/jsp/list.jsp</result>
+		</action>
+		<action name="cart_*" class="CartAction" method="{1}">
+			<result name="addCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+			<result name="clearCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+			<result name="removeCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+			<result name="myCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+		</action>
+		<action name="user_*" class="UserAction" method="{1}">
+			<result name="loginPageSuccess">/WEB-INF/jsp/login.jsp</result>
+			<result name="registPageSuccess">/WEB-INF/jsp/regist1.jsp</result>
+			<result name="loginSuccess" type="redirectAction">index</result>
+			<result name="loginInput">/WEB-INF/jsp/login.jsp</result>
+			<result name="quitSuccess" type="redirectAction">index</result>
+			<result name="registSuccess">/WEB-INF/jsp/msg.jsp</result>
+			<result name="registInput">/WEB-INF/jsp/regist1.jsp</result>
+
+		</action>
+		<!-- 配置验证码的Action -->
+		<action name="checkImg" class="checkImg"></action>
+		<!-- 配置订单的Action -->
+		<action name="order_*" class="OrderAction" method="{1}">
+			<result name="saveOrderSuccess">/WEB-INF/jsp/order.jsp</result>
+		</action>
+	</package>
+    	
+    	
+    
+    
+
+</struts>
